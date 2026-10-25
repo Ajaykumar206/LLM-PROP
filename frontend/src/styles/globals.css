@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-dark: #040914;
+    --card-bg: rgba(9, 18, 38, 0.75);
+    --card-border: rgba(30, 58, 110, 0.5);
+    --card-border-glow: rgba(56, 189, 248, 0.4);
+    --glow-cyan: #00f2fe;
+    --glow-blue: #3b82f6;
+    --glow-indigo: #6366f1;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #040914;
+    background-image: 
+      radial-gradient(circle at 15% 15%, rgba(14, 165, 233, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 85% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 50% 85%, rgba(6, 182, 212, 0.06) 0%, transparent 50%);
+    color: #f1f5f9;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Sci-Fi Hologram & Glass Panels */
+.glass-panel-dark {
+  background: rgba(10, 20, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(38, 70, 133, 0.45);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45), inset 0 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.glass-panel-dark:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 12px 40px 0 rgba(0, 140, 255, 0.15), inset 0 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Mouse Reactive Spotlight Card */
+.spotlight-card {
+  position: relative;
+  background: rgba(10, 20, 42, 0.8);
+  border: 1px solid rgba(38, 70, 133, 0.5);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  top: var(--mouse-y, -1000px);
+  left: var(--mouse-x, -1000px);
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.14) 0%, rgba(99, 102, 241, 0.04) 50%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+.spotlight-card:hover {
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 10px 30px -5px rgba(2, 132, 199, 0.2), inset 0 0 0 1px rgba(56, 189, 248, 0.2);
+}
+
+/* Glow Utilities */
+.glow-text-cyan {
+  text-shadow: 0 0 12px rgba(6, 182, 212, 0.7), 0 0 24px rgba(6, 182, 212, 0.3);
+}
+
+.glow-box-cyan {
+  box-shadow: 0 0 20px -2px rgba(6, 182, 212, 0.5);
+}
+
+.glow-box-blue {
+  box-shadow: 0 0 25px -3px rgba(59, 130, 246, 0.5);
+}
+
+/* Hologram Pedestal Base Rings */
+@keyframes pulseRings {
+  0% {
+    transform: scale(0.92) rotate(0deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.05) rotate(180deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(0.92) rotate(360deg);
+    opacity: 0.5;
+  }
+}
+
+@keyframes floatHolo {
+  0%, 100% {
+    transform: translateY(0px) rotateY(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotateY(180deg);
+  }
+}
+
+.animate-pulse-rings {
+  animation: pulseRings 12s linear infinite;
+}
+
+.animate-float-holo {
+  animation: floatHolo 8s ease-in-out infinite;
+}
+
+/* Custom sci-fi scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #040914;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e3a6a;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
+}
